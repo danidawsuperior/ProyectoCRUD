@@ -142,14 +142,34 @@ public class MiAlmacen
     
     private static void borrar(){       
       System.out.println("<ELIMINAR>");
-      System.out.println("Aún no disponible");
+      System.out.println("Introduzca un codigo");
+      int codigo = leerEntero();
+      
+      Producto p = almacen.buscarProducto(codigo);
+      if ( p == null) {
+    	  System.out.println("El producto no existe");
+      } else {
+    	  almacen.borrarProducto(codigo);
+    	  System.out.println("Producto eliminado correctamente");
+      }
       // IMPLEMENTAR
     }
     
     // Cambia el precio de un producto a partir de su codigo
     private static void modificarPrecio (){
        System.out.println("<MODIFICAR PRECIO>");
-       System.out.println("Aún no disponible");
+       System.out.println("Introduzca un código");
+       int codigo = leerEntero();
+       
+       Producto p = almacen.buscarProducto(codigo);
+       if( p == null) {
+    	   System.out.println("El producto no existe");
+       } else {
+    	   System.out.println("Nuevo precio del producto: ");
+    	   float precio = leerFloat();
+    	   p.setPrecio(precio);
+    	   System.out.println("Precio actualizado correctamente");
+       }
        // IMPLEMENTAR
     }
     
@@ -158,14 +178,41 @@ public class MiAlmacen
     // Incrementa el stock
     private static void comprar(){     
        System.out.println("<COMPRAR>");
-       System.out.println("Aún no disponible");
+       System.out.println("Introduzca un codigo");
+       int codigo = leerEntero();
+       
+       Producto p = almacen.buscarProducto(codigo);
+       if ( p == null) {
+    	   System.out.println("El produto no existe");
+       } else {
+    	   System.out.println("Cantidad para añadir al stock");
+    	   int cantidad = leerEntero();
+    	   p.setStock(p.getStock() + cantidad);
+    	   System.out.println("Stock actualizado correctamente");
+       }
        // IMPLEMENTAR 
     }
     
     // Decrementa el stock
     private static void vender(){
         System.out.println("<VENDER>");
-        System.out.println("Aún no disponible");
+        System.out.println("Introduzca un codigo");
+        int codigo = leerEntero();
+        
+        Producto p = almacen.buscarProducto(codigo);
+        if ( p == null) {
+        	System.out.println("El producto no existe");
+        } else {
+        	System.out.println("Cantidad de productos a vender");
+        	int cantidad = leerEntero();
+        	
+        	if ( p.getStock() < cantidad) {
+        		System.out.println("No hay suficientes articulos en stock");
+        	} else {
+        		p.setStock(p.getStock() - cantidad);
+        		System.out.println("Venta realizada correctamente");
+        	}
+        }
        // IMPLEMENTAR
        
     }
@@ -191,7 +238,36 @@ public class MiAlmacen
     // El codigo no se puede repetir
     private static void crear(){
        System.out.println("<NUEVO PRODUCTO>");
-       System.out.println("Aún no disponible");
+       System.out.println("Introduzca un nuevo codigo");
+       int codigo = leerEntero();
+       
+       if(almacen.buscarProducto(codigo) != null) {
+    	   System.out.println("El codigo introducido ya existe");
+    	   return;
+       }
+       
+       System.out.println("Nombre del producto: ");
+       String nombre = sc.nextLine();
+       
+       System.out.println("Precio del producto: ");
+       float precio = leerFloat();
+       
+       System.out.println("Stock inicial del producto: ");
+       int stock = leerEntero();
+       
+       System.out.println("Stock minimo del producto: ");
+       int stockMin = leerEntero();
+       
+       Producto p = new Producto();
+       p.setCodigo(codigo);
+       p.setNombre(nombre);
+       p.setPrecio(precio);
+       p.setStock(stock);
+       p.setStock_min(stockMin);
+       
+       almacen.insertarProducto(p);
+       
+       System.out.println("Producto creado correctamente");
        // IMPLEMENTAR
     }
        
