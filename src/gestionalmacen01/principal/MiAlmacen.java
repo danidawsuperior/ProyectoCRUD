@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import gestionalmacen01.modelo.ModeloAbs;
 import gestionalmacen01.modelo.ModeloArrayList;
+import gestionalmacen01.modelo.ModeloHashMap;
 import gestionalmacen01.modelo.Producto;
 
 //Completar los métodos
@@ -23,7 +24,7 @@ public class MiAlmacen
     static private Scanner sc;
     
     public static void main(String[] args){
-        almacen=new ModeloArrayList ();
+        almacen=new ModeloHashMap ();
         sc = new Scanner(System.in);
         
         cargarDatosPrueba();

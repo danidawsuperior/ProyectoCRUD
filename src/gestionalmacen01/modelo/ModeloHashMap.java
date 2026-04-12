@@ -25,6 +25,9 @@ public class ModeloHashMap implements ModeloAbs
 	@Override
 	public boolean insertarProducto(Producto p) {
 		// TODO Auto-generated method stub
+		if (mapa.containsKey(p.codigo)) {
+			return false;
+		}
 		mapa.put(p.codigo, p);
 		return true;
 	}
@@ -39,7 +42,11 @@ public class ModeloHashMap implements ModeloAbs
 	public boolean modificarProducto(Producto nuevo) {
 		// TODO Auto-generated method stub
 		//return (mapa.containsValue(nuevo));
-		return (mapa.containsKey(nuevo.codigo));
+		if (mapa.containsKey(nuevo.codigo)) {
+			mapa.put(nuevo.codigo, nuevo);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -52,7 +59,7 @@ public class ModeloHashMap implements ModeloAbs
 	public void imprimirProductosTodos() {
 		// TODO Auto-generated method stub
 		for (Producto p : mapa.values()) {
-			System.out.println(p);
+			System.out.println(p.toString());
 		}
 	}
 
@@ -65,7 +72,7 @@ public class ModeloHashMap implements ModeloAbs
 	@Override
 	public List<Producto> obtenerProductosStockMin() {
 		// TODO Auto-generated method stub
-		var listaStockMin = new ArrayList<Producto>();
+		List<Producto> listaStockMin = new ArrayList<Producto>();
 		for (Producto p : mapa.values()) {
 			if(p.stock <= p.stock_min) {	
 				listaStockMin.add(p);
