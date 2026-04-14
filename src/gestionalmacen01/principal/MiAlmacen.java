@@ -82,23 +82,23 @@ public class MiAlmacen
     
     
     static private int leerEntero(){
-       boolean error = false;
-        int  valor =0;
-        String cadena;
-        do {
-        error = false;  
-          try {
-             // Intento leer directamente un entero  
-             cadena = sc.nextLine();
-             valor = Integer.parseInt(cadena);
-             
-            } catch(NumberFormatException e){
-              System.out.println("Error en formato.");
-              error = true;
-            }
-        }
-       while ( error);
-       return valor; 
+    	 boolean error = false;
+         int  valor =0;
+         String cadena;
+         do {
+         error = false;  
+           try {
+              // Intento leer directamente un entero  
+              cadena = sc.nextLine();
+              valor = Integer.parseInt(cadena);
+              
+             } catch(NumberFormatException e){
+               System.out.println("Error en formato.");
+               error = true;
+             }
+         }
+        while ( error);
+        return valor; 
     }
 
     static private float leerFloat(){
